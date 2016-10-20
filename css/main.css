@@ -1,3 +1,19 @@
+header{
+	background: #eee;
+	padding-bottom: 20px;;
+
+}
+section{
+	min-height: 230px;
+
+}
+.container{
+	;
+	padding: 0;
+	;
+	box-shadow: 2px 2px 20px rgba(0, 0 , 0, .5);
+
+}
 #header{
 	display: flex;
 	flex-direction: column;
@@ -59,5 +75,10 @@
 }
 .colum>div{
 	margin-bottom: 6px;
+
+}
+footer{
+	height: 100px;
+	background: #3c3838;
 
 }
