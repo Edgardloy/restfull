@@ -13,3 +13,23 @@
 .navbar-nav{
 	float: right;
 }
+#film-desc{
+	display: none;
+}
+#lista{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.lis-wrap{
+	display: flex;
+	flex-direction: column;
+	width: 300px;
+}
+.lis-wrap img{
+	width: 100px;
+}

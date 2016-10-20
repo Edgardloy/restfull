@@ -28,8 +28,8 @@ $(document).ready(function() {
 					let movie = movies[i];
 					let poster = (movie.Poster != "N/A") ? movie.Poster : "http://placehold.it/100x150";
 					let block = `<div class="lis-wrap">
-		                            <a href="#" data-id="${movie.imdbID}"><img src="${poster}" alt="${movie.Title}"></a>
-		                            <a href="#" data-id="${movie.imdbID}"><center>${movie.Title}</center></a>
+		                            <a href="#" class="film" data-id="${movie.imdbID}"><img src="${poster}" alt="${movie.Title}"></a>
+		                            <a href="#" class="film" data-id="${movie.imdbID}"><center>${movie.Title}</center></a>
 		                            <center>${movie.Year}</center>
                         		</div>`;
 					$("#lista").append(block);
@@ -39,8 +39,35 @@ $(document).ready(function() {
 			}
 		});
 
-	})
+	});
 
+	$(document).on("click", "a.film", function (event) {
+		event.preventDefault();
+		$("#lista").hide();
+
+		let filmID = $(this).data("id");
+
+		$.ajax({
+		  url: url + 'i=' + filmID,
+		  method: 'GET'
+		}).then(function(data) {
+		 console.log(data);
+		 return;
+			if(data.Response){
+				let movie = data;
+				let poster = (movie.Poster != "N/A") ? movie.Poster : "http://placehold.it/100x150";
+				let block = `<div class="lis-wrap">
+	                            <a href="#" class="film" data-id="${movie.imdbID}"><img src="${poster}" alt="${movie.Title}"></a>
+	                            <a href="#" class="film" data-id="${movie.imdbID}"><center>${movie.Title}</center></a>
+	                            <center>${movie.Year}</center>
+                    		</div>`;
+				$("#lista").append(block);
+				$("#lista").append(UL);			
+			}
+		});
+
+
+	});
 
 
 });
