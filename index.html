@@ -9,13 +9,54 @@
     <meta name="author" content="Artoo2016">
     <meta name="application-name" content="Git">
     <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
     <title>GIT</title>
 </head>
 
 <body>
     <div class="container">
-        <h1>RESTFULL APPLICATION</h1>
-        <!-- APPLICATION START HERE -->
+        <header>
+            <div class="row">
+                <div id="header" class="col-md-12">
+                    <img class="logo" src="img/imdb_logo.png">
+                    <form role="form" class="form-inline">
+                        <div class="form-group">
+                            <label for="titolo">Titolo</label>
+                            <input type="text" class="form-control" id="titolo" placeholder="Titolo per cercare">
+                        </div>
+                        <div class="form-group">
+                            <label for="genere">Genere</label>
+                            <select class="form-control" id="genere">
+                                <option value="">All</option>
+                                <option value="movie">Movie</option>
+                                <option value="series">Series</option>
+                                <option value="episode">Episode</option>
+                            </select>
+                        </div>
+                        <button id="subm" class="btn btn-success">Via</button>
+                    </form>
+                </div>
+            </div>
+        </header>
+        <section>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="lista">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="film-desc">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer>
+            
+        </footer>
         
     </div>
     <!-- JQUERY DEPENDENCIES -->
