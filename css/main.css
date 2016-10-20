@@ -5,6 +5,10 @@
 	align-items: center;
 
 }
+.logo{
+	margin-bottom: -62px;
+		
+}
 #film-desc{
 	display: none;
 }
@@ -38,9 +42,22 @@
 }
 #film-desc{
 	display: flex;
-	flex-direction: column;	
+	flex-direction: row;
+	width: 800px;
+	margin: 30px 10px;	
 }
 .colum{
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
+	margin-left: 100px;
+}
+.colum div>span{
+    width: 85px;
+    display: inline-block;
+    font-weight: bolder;
+    font-size: 16px;
+}
+.colum>div{
+	margin-bottom: 6px;
+
 }

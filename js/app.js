@@ -110,7 +110,7 @@ var show = (function () {
                     <div class="colum">
                     	<span><h1>${movie.Title}</h1></span>
                         <div><span>Raiting: </span> ${movie.imdbRating} ${stelle}</div>
-                        <div><span>County: </span>${movie.County}</div>
+                        <div><span>Country: </span>${movie.Country}</div>
                         <div><span>Year: </span>${movie.Year}</div>
                         <div><span>Released: </span>${movie.Released}</div>
                         <div><span>Runtime: </span>${movie.Runtime}</div>
