@@ -2,6 +2,7 @@ $(document).ready(function() {
 	
 	const urlGenere = "http://www.omdbapi.com/?";
 	const block_per_movies = "#lista";
+	const block_per_movie = "#film-desc";
 	const input_titolo = "#titolo";
 	const input_genere = "#genere";
 	const btn_submit = "#subm";
@@ -23,13 +24,13 @@ $(document).ready(function() {
 		let genere = $(input_genere).val();
 
 		moviesService.setParam({url:urlGenere})
-			.getList(titolo, genere)
-			.then(function(data) {
-				if(data.Response){
-					let movies = data.Search;
-					show.Movies(movies, block_per_movies);	
-				}
-		});
+					.getList(titolo, genere)
+					.then(function(data) {
+						if(data.Response){
+							let movies = data.Search;
+							show.Movies(movies, block_per_movies);	
+						}
+					});
 
 	});
 
@@ -39,36 +40,16 @@ $(document).ready(function() {
 
 		let filmID = $(this).data("id");
 
-		$.ajax({
-		  url: url + 'i=' + filmID,
-		  method: 'GET'
-		}).then(function(data) {
-			if(data.Response){
-				let movie = data;
-				let poster = (movie.Poster != "N/A") ? movie.Poster : "http://placehold.it/300x450";
-				let rating = Math.floor(movie.imdbRating);
-				var stelle = "";
-				for (var i = 0; i < rating; i++) {
-					stelle += "<img src='img/stella.png' width='20px'>";
-				}
-				let block = `<p>${movie.Title}</p>
-	                        <div class="riga">
-	                            <img src="${poster}">
-	                            <div class="param">
-	                                <div><span>Raiting:</span> ${movie.imdbRating} ${stelle}</div>
-	                            </div>
-	                        </div>
-	                        <div class="riga">
-		                        <p></p>
-		                        <p></p>
-		                        <p></p>
-		                        <p></p>
-	                        </div>`;
-				$("#film-desc").append(block);	
-			}
-		});
+		moviesService.setParam({url:urlGenere})
+					.getMovie(filmID)
+					.then(function(data) {
+						if(data.Response){
+							let movie = data;
+							show.Movie(movie, block_per_movie);
+						}
+					});
 
-		$("#film-desc").show();
+		$(block_per_movie).show();
 	});
 
 });
@@ -87,9 +68,9 @@ var moviesService = (function () {
 		});
 	}
 
-	let _getMovie = function (title) {
+	let _getMovie = function (filmID) {
 		return $.ajax({
-		  url: _url + 't=' + title,
+		  url: _url + 'i=' + filmID,
 		  method: 'GET'
 		});
 	}
@@ -116,8 +97,30 @@ var show = (function () {
 		}
 	}
 
-	var _Movie = function (argument) {
-		
+	var _Movie = function (movie, idBlock) {
+		let poster = (movie.Poster != "N/A") ? movie.Poster : "http://placehold.it/300x450";
+		let rating = Math.floor(movie.imdbRating);
+		var stelle = "";
+		for (var i = 0; i < rating; i++) {
+			stelle += "<img src='img/stella.png' width='20px'>";
+		}
+		let block = `<div>
+                        <img src="${poster}">
+                    </div>
+                    <div class="colum">
+                    	<span><h1>${movie.Title}</h1></span>
+                        <div><span>Raiting: </span> ${movie.imdbRating} ${stelle}</div>
+                        <div><span>County: </span>${movie.County}</div>
+                        <div><span>Year: </span>${movie.Year}</div>
+                        <div><span>Released: </span>${movie.Released}</div>
+                        <div><span>Runtime: </span>${movie.Runtime}</div>
+                        <div><span>Genre: </span>${movie.Genre}</div>
+                        <div><span>Director: </span>${movie.Director}</div>
+                        <div><span>Actors: </span>${movie.Actors}</div>
+                        <div><span>Desc: </span>${movie.Plot}</div>
+                        <div class="hr"></div>
+                    </div>`;
+		$(idBlock).append(block);	
 	}
 	
 	return {
